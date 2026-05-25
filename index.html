@@ -1,631 +1,259 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generic Dasar - Dart Programming | Fajar Rio Dinata</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generic Dasar - Fajar Rio Dinata</title>
 
-        body {
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
-            font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
-            padding: 2rem 2rem;
-        }
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
 
-        .slide-deck {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1.8rem;
-        }
+    body{
+      background: #f4f4ff;
+      color:#333;
+      line-height:1.6;
+    }
 
-        .slide {
-            background: #ffffff;
-            border-radius: 28px;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+    header{
+      background: linear-gradient(135deg,#6a5acd,#8a2be2);
+      color:white;
+      text-align:center;
+      padding:40px 20px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    }
 
-        .slide:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 28px 40px -14px rgba(0, 0, 0, 0.4);
-        }
+    header h1{
+      font-size:38px;
+      margin-bottom:10px;
+    }
 
-        .slide-header {
-            background: #0f172a;
-            padding: 0.9rem 2rem;
-            border-bottom: 3px solid #3b82f6;
-        }
+    header p{
+      font-size:18px;
+    }
 
-        .slide-header h2 {
-            color: white;
-            font-size: 1.4rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+    .container{
+      width:90%;
+      max-width:1000px;
+      margin:30px auto;
+    }
 
-        .badge-slide {
-            background: #3b82f6;
-            padding: 4px 12px;
-            border-radius: 40px;
-            font-size: 0.7rem;
-            font-weight: 500;
-        }
+    .card{
+      background:white;
+      padding:25px;
+      margin-bottom:25px;
+      border-radius:15px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
 
-        .slide-content {
-            padding: 1.8rem 2rem;
-        }
+    .card:hover{
+      transform:translateY(-5px);
+    }
 
-        .slide-content p {
-            color: #1e293b;
-            line-height: 1.55;
-            margin-bottom: 1rem;
-        }
+    h2{
+      color:#6a5acd;
+      margin-bottom:15px;
+    }
 
-        .slide-content h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #0f172a;
-            border-left: 5px solid #3b82f6;
-            padding-left: 1rem;
-        }
+    pre{
+      background:#1e1e1e;
+      color:#00ff99;
+      padding:15px;
+      border-radius:10px;
+      overflow-x:auto;
+      margin-top:10px;
+    }
 
-        .slide-content h4 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin: 1rem 0 0.5rem;
-            color: #1e293b;
-        }
+    ul{
+      margin-left:20px;
+    }
 
-        pre {
-            background: #0f172a;
-            color: #e2e8f0;
-            padding: 1rem 1.5rem;
-            border-radius: 1rem;
-            overflow-x: auto;
-            font-family: 'Fira Code', 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            line-height: 1.5;
-            margin: 1rem 0;
-            border: 1px solid #334155;
-        }
+    footer{
+      text-align:center;
+      padding:20px;
+      background:#6a5acd;
+      color:white;
+      margin-top:30px;
+    }
 
-        code {
-            background: #f1f5f9;
-            padding: 0.2rem 0.5rem;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 0.85rem;
-            color: #0c4a6e;
-        }
-
-        .highlight {
-            background: #eef2ff;
-            padding: 0.2rem 0.5rem;
-            border-radius: 8px;
-            font-family: monospace;
-            font-weight: 600;
-            color: #1e40af;
-        }
-
-        ul, ol {
-            margin: 0.8rem 0 0.8rem 1.6rem;
-        }
-
-        li {
-            margin: 0.4rem 0;
-            color: #1e293b;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            background: #fefefe;
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        th, td {
-            border: 1px solid #cbd5e1;
-            padding: 10px 12px;
-            text-align: left;
-        }
-
-        th {
-            background: #e2e8f0;
-            font-weight: 700;
-        }
-
-        .check-good {
-            color: #15803d;
-            font-weight: bold;
-        }
-
-        .slide-footer {
-            margin-top: 1.5rem;
-            padding-top: 0.7rem;
-            border-top: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.7rem;
-            color: #475569;
-            flex-wrap: wrap;
-        }
-
-        .identity {
-            background: #f1f5f9;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            font-weight: 600;
-            color: #0f172a;
-        }
-
-        @media (max-width: 700px) {
-            body {
-                padding: 1rem;
-            }
-            .slide-content {
-                padding: 1.2rem;
-            }
-            pre {
-                font-size: 0.65rem;
-            }
-        }
-    </style>
+    .info{
+      background:#ece9ff;
+      padding:15px;
+      border-left:5px solid #6a5acd;
+      border-radius:10px;
+      margin-top:10px;
+    }
+  </style>
 </head>
+
 <body>
-<div class="slide-deck">
-    <!-- ============================================= -->
-    <!-- SLIDE 1: Review Sesi 5 – Class Modifiers       -->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>🔁 Slide 1: Review Sesi 5 – Class Modifiers <span class="badge-slide">sealed | base | final</span></h2>
-        </div>
-        <div class="slide-content">
-            <p><code class="highlight">sealed</code> : hierarki tertutup, pattern matching &nbsp;|&nbsp; 
-            <code class="highlight">base</code> : hanya bisa di-extend, tidak di-implement dari luar &nbsp;|&nbsp;
-            <code class="highlight">final</code> : tidak bisa di-extend/di-implement dari luar</p>
-            <pre>sealed class Result {}
-class Success extends Result {}
-class Failure extends Result {}</pre>
-            <p><strong>Contoh cepat:</strong> hierarki tertutup dengan pattern matching.</p>
-            <div class="slide-footer">
-                <span>📘 Modifier kontrol akses Dart 3+</span>
-                <span class="identity">👨‍💻 Fajar Rio Dinata | NIM: 251410025</span>
-            </div>
-        </div>
+
+  <header>
+    <h1>SESI 6 - GENERIC DASAR</h1>
+    <p>Nama: <b>Fajar Rio Dinata</b></p>
+    <p>NIM: <b>251410025</b></p>
+  </header>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>Pengertian Generic</h2>
+      <p>
+        Generic adalah fitur dalam Dart yang digunakan untuk membuat kode
+        agar dapat bekerja dengan berbagai tipe data secara aman.
+      </p>
+
+      <div class="info">
+        <b>Manfaat Generic:</b>
+        <ul>
+          <li>Type Safety</li>
+          <li>Code Reusability</li>
+          <li>Compile-time Checking</li>
+        </ul>
+      </div>
     </div>
 
-    <!-- ============================================= -->
-    <!-- SLIDE 2: Pengantar Generic                     -->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>📦 Slide 2: Pengantar Generic</h2>
-        </div>
-        <div class="slide-content">
-            <p><strong>• Apa itu Generic?</strong> Fitur untuk membuat kode yang bekerja dengan berbagai tipe data</p>
-            <p><strong>• Analog:</strong> Kotak penyimpanan yang bisa menampung apa saja, tapi dengan label tipe</p>
-            <p><strong>• Manfaat:</strong></p>
-            <ul>
-                <li>i. Type safety (keamanan tipe)</li>
-                <li>ii. Code reusability (penggunaan ulang)</li>
-                <li>iii. Compile-time checking</li>
-            </ul>
-            <div class="slide-footer">
-                <span>🎯 Generic = polimorfisme parametrik</span>
-                <span class="identity">Fajar Rio Dinata | 251410025</span>
-            </div>
-        </div>
-    </div>
+    <div class="card">
+      <h2>Contoh Tanpa Generic</h2>
 
-    <!-- ============================================= -->
-    <!-- SLIDE 3: Masalah Tanpa Generic                 -->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>⚠️ Slide 3: Masalah Tanpa Generic</h2>
-        </div>
-        <div class="slide-content">
-            <pre>class Box {
-  dynamic data; // Bisa apa saja
+<pre>
+class Box {
+  dynamic data;
+
   Box(this.data);
 }
 
 void main() {
   var box = Box(42);
-  int value = box.data; // Runtime error jika bukan int
-  // Tidak aman!
-}</pre>
-            <p><strong>Bahaya dynamic:</strong> kehilangan type safety, rawan error runtime.</p>
-            <div class="slide-footer">
-                <span>🚫 Dynamic mengancam keamanan tipe</span>
-                <span class="identity">Fajar Rio Dinata | 251410025</span>
-            </div>
-        </div>
+
+  int value = box.data;
+  print(value);
+}
+</pre>
+
+      <p>
+        Penggunaan <b>dynamic</b> kurang aman karena bisa menyebabkan
+        runtime error.
+      </p>
     </div>
 
-    <!-- ============================================= -->
-    <!-- SLIDE 5: Sintaks Generic Dasar (sesuai urutan)-->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>📐 Slide 5: Sintaks Generic Dasar</h2>
-        </div>
-        <div class="slide-content">
-            <p>• Type parameter: <code>&lt;T&gt;</code>, <code>&lt;E&gt;</code>, <code>&lt;K, V&gt;</code></p>
-            <p>• Konvensi:</p>
-            <ul>
-                <li><strong>T</strong> = Type</li>
-                <li><strong>E</strong> = Element (collection)</li>
-                <li><strong>K</strong> = Key</li>
-                <li><strong>V</strong> = Value</li>
-                <li><strong>R</strong> = Return type</li>
-            </ul>
-            <pre>class MyClass&lt;T&gt; {
+    <div class="card">
+      <h2>Contoh Dengan Generic</h2>
+
+<pre>
+class Box&lt;T&gt; {
   T data;
+
+  Box(this.data);
+}
+
+void main() {
+  var intBox = Box&lt;int&gt;(42);
+  var stringBox = Box&lt;String&gt;("Hello");
+
+  print(intBox.data);
+  print(stringBox.data);
+}
+</pre>
+
+      <p>
+        Dengan Generic, tipe data menjadi lebih aman dan jelas.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Sintaks Generic</h2>
+
+      <ul>
+        <li><b>T</b> = Type</li>
+        <li><b>E</b> = Element</li>
+        <li><b>K</b> = Key</li>
+        <li><b>V</b> = Value</li>
+      </ul>
+
+<pre>
+class MyClass&lt;T&gt; {
+  T data;
+
   MyClass(this.data);
-  T getData() { return data; }
 }
+</pre>
 
-T myFunc&lt;T&gt;(T value) { return value; }
-
-void main() {
-  // Class generic
-  var myIntClass = MyClass&lt;int&gt;(10);
-  var myStringClass = MyClass&lt;String&gt;("test");
-  print(myIntClass.getData());   // Output: 10
-  print(myStringClass.getData());// Output: test
-  
-  // Fungsi generic
-  var intValue = myFunc&lt;int&gt;(100);
-  var stringValue = myFunc&lt;String&gt;("hello");
-  print(intValue);   // 100
-  print(stringValue);// hello
-}</pre>
-            <div class="slide-footer">
-                <span>🔧 Parameter tipe standar T, E, K, V</span>
-                <span class="identity">Fajar Rio Dinata | 251410025</span>
-            </div>
-        </div>
     </div>
 
-    <!-- ============================================= -->
-    <!-- SLIDE 6: contoh Kelas Box<T>                  -->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>📦 Slide 6: Contoh Kelas Box&lt;T&gt;</h2>
-        </div>
-        <div class="slide-content">
-            <pre>class Box&lt;T&gt; {
-  T? _value;        // Tipe data T, nullable
-  Box(this._value); // Constructor
-  T? get value => _value;
-  void setValue(T value) { _value = value; }
-}
+    <div class="card">
+      <h2>Multiple Type Parameter</h2>
 
-void main() {
-  // Menggunakan Box dengan tipe data int
-  var intBox = Box&lt;int&gt;(10);
-  print('Int Box Value: ${intBox.value}'); // Output: 10
-  intBox.setValue(20);
-  print('Int Box Value After Set: ${intBox.value}'); // 20
-  
-  // Menggunakan Box dengan tipe data String
-  var stringBox = Box&lt;String&gt;("Hello, Generic!");
-  print('String Box Value: ${stringBox.value}');
-  stringBox.setValue('Hello World');
-  print('String Box Value After Set: ${stringBox.value}');
-  
-  // Box dengan double
-  var doubleBox = Box&lt;double&gt;(3.14);
-  print('Double Box Value: ${doubleBox.value}'); // 3.14
-}</pre>
-            <div class="slide-footer">
-                <span>📦 Box bisa menyimpan tipe apa pun dengan aman</span>
-                <span class="identity">Fajar Rio Dinata | 251410025</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============================================= -->
-    <!-- SLIDE 7: Multiple Type Parameters (Pair)      -->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>🔗 Slide 7: Multiple Type Parameters</h2>
-        </div>
-        <div class="slide-content">
-            <pre>class Pair&lt;K, V&gt; {
+<pre>
+class Pair&lt;K, V&gt; {
   K key;
   V value;
+
   Pair(this.key, this.value);
-  void printPair() { print('Key: $key, Value: $value'); }
 }
+</pre>
 
-void main() {
-  // Pair dengan tipe data String dan int
-  var pair1 = Pair&lt;String, int&gt;('age', 30);
-  pair1.printPair(); // Output: Key: age, Value: 30
-  
-  // Pair dengan tipe data String dan String
-  var pair2 = Pair&lt;String, String&gt;('name', 'Alice');
-  pair2.printPair(); // Output: Key: name, Value: Alice
-  
-  // Pair dengan tipe data int dan double
-  var pair3 = Pair&lt;int, double&gt;(1, 2.71);
-  pair3.printPair(); // Output: Key: 1, Value: 2.71
-}</pre>
-            <div class="slide-footer">
-                <span>🔑 Multiple type parameters: &lt;K, V&gt;</span>
-                <span class="identity">Fajar Rio Dinata | 251410025</span>
-            </div>
-        </div>
+      <p>
+        Generic dapat menggunakan lebih dari satu tipe data.
+      </p>
     </div>
 
-    <!-- ============================================= -->
-    <!-- SLIDE 8: menggabungkan dua nilai combine      -->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>⚙️ Slide 8: Menggabungkan Dua Nilai dengan Tipe Berbeda</h2>
-        </div>
-        <div class="slide-content">
-            <pre>String combine&lt;T, U&gt;(T value1, U value2) {
-  return '$value1, $value2';
-}
+    <div class="card">
+      <h2>Generic dengan Extends</h2>
 
-void main() {
-  var result1 = combine&lt;String, int&gt;("Number is ", 10);
-  print(result1); // Output: Number is , 10
-  
-  var result2 = combine&lt;int, double&gt;(10, 20.5);
-  print(result2); // Output: 10, 20.5
-}</pre>
-            <div class="slide-footer">
-                <span>🔄 Generic dengan dua parameter tipe berbeda</span>
-                <span class="identity">Fajar Rio Dinata | 251410025</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============================================= -->
-    <!-- SLIDE 9: Generic dengan extends               -->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>🔒 Slide 9: Generic dengan extends (Constraint)</h2>
-        </div>
-        <div class="slide-content">
-            <p>• membatasi tipe data yang dapat digunakan dengan type parameter menggunakan keyword <strong>extends</strong>.</p>
-            <pre>class NumberBox&lt;T extends num&gt; {
+<pre>
+class NumberBox&lt;T extends num&gt; {
   T value;
+
   NumberBox(this.value);
-  T getValue() { return value; }
+}
+</pre>
+
+      <p>
+        Keyword <b>extends</b> digunakan untuk membatasi tipe data tertentu.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Type Inference</h2>
+
+<pre>
+T myFunc&lt;T&gt;(T value) {
+  return value;
 }
 
 void main() {
-  // Valid
-  var intBox = NumberBox&lt;int&gt;(10);
-  print("int box value: ${intBox.getValue()}"); // Output: 10
-  var doubleBox = NumberBox&lt;double&gt;(3.14);
-  print("double box value: ${doubleBox.getValue()}"); // Output: 3.14
-  
-  // Invalid - Error: The type 'String' is not a subtype of 'num'
-  // var stringBox = NumberBox&lt;String&gt;("test");
-}</pre>
-            <div class="slide-footer">
-                <span>⛓️ Batasan tipe dengan extends num</span>
-                <span class="identity">Fajar Rio Dinata | 251410025</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============================================= -->
-    <!-- SLIDE 10: Type Inference (Inferensi Tipe)     -->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>🧠 Slide 10: Type Inference (Inferensi Tipe)</h2>
-        </div>
-        <div class="slide-content">
-            <p>• Dart bisa menebak tipe generic dari konteks</p>
-            <pre>T myFunc&lt;T&gt;(T value) { return value; }
-
-void main() {
-  var intValue = myFunc(10);      // Dart menginferensi T sebagai int
-  print(intValue.runtimeType);    // Output: int
-  var stringValue = myFunc("test"); // Dart menginferensi T sebagai String
-  print(stringValue.runtimeType);   // Output: String
-}</pre>
-            <div class="slide-footer">
-                <span>✨ Dart cerdas: tidak perlu selalu menulis &lt;T&gt;</span>
-                <span class="identity">Fajar Rio Dinata | 251410025</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============================================= -->
-    <!-- SLIDE 11: Pembatasan Tipe dan manfaatnya      -->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>📌 Slide 11: Pembatasan Tipe dan Manfaatnya</h2>
-        </div>
-        <div class="slide-content">
-            <ul>
-                <li><strong>Keamanan Tipe yang Lebih Baik:</strong> Memastikan kode hanya bekerja dengan tipe data kompatibel, mengurangi runtime error.</li>
-                <li><strong>Peningkatan Keterbacaan Kode:</strong> Kode lebih jelas, tipe data yang diharapkan eksplisit.</li>
-                <li><strong>Memungkinkan Penggunaan Method dari Tipe Data Tertentu:</strong> Memanggil method spesifik dari tipe yang dibatasi.</li>
-                <li><strong>Mencegah Penggunaan Tipe Data yang Tidak Sesuai:</strong> Menghindari penyalahgunaan tipe.</li>
-                <li><strong>Membantu dalam Desain dan Implementasi:</strong> Merancang kelas/fungsi generic lebih terstruktur.</li>
-            </ul>
-            <pre>void printIterable&lt;T extends Iterable&lt;dynamic&gt;&gt;(T iterable) {
-  for (var item in iterable) { print(item); }
+  var angka = myFunc(10);
+  print(angka);
 }
-void main() {
-  printIterable&lt;List&lt;int&gt;&gt;([1, 2, 3]); // Output: 1,2,3
-  printIterable&lt;Set&lt;String&gt;&gt;({'apple', 'banana'});
-  // printIterable&lt;int&gt;(10); // Error: int bukan Iterable
-}</pre>
-            <div class="slide-footer">
-                <span>📚 Pembatasan pada interface & class</span>
-                <span class="identity">Fajar Rio Dinata | 251410025</span>
-            </div>
-        </div>
+</pre>
+
+      <p>
+        Dart dapat menentukan tipe data secara otomatis.
+      </p>
     </div>
 
-    <!-- ============================================= -->
-    <!-- SLIDE 14: Generic vs Dynamic vs Object        -->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>⚖️ Slide 14: Generic vs Dynamic vs Object</h2>
-        </div>
-        <div class="slide-content">
-            <table>
-                <thead><tr><th>Aspect</th><th>Generic&lt;T&gt;</th><th>dynamic</th><th>Object</th></tr></thead>
-                <tbody>
-                    <tr><td>Type Safety</td><td class="check-good">✅ Compile-time</td><td>⚠️ Runtime</td><td class="check-good">✅ Compile-time</td></tr>
-                    <tr><td>Flexibility</td><td>Terbatas (sesuai T)</td><td>Sangat fleksibel</td><td>Terbatas</td></tr>
-                    <tr><td>Performance</td><td>✅ Optimal</td><td>⚠️ Overhead</td><td>✅ Optimal</td></tr>
-                    <tr><td>Casting</td><td>Tidak perlu</td><td>Tidak perlu</td><td>Perlu casting</td></tr>
-                </tbody>
-            </table>
-            <pre>Box&lt;int&gt; box1 = Box&lt;int&gt;(42);   // Generic: aman
-dynamic box2 = 42;               // Dynamic: tidak aman
-Object box3 = 42;                // Object: perlu casting</pre>
-            <div class="slide-footer">
-                <span>🏆 Generic: keseimbangan aman & efisien</span>
-                <span class="identity">Fajar Rio Dinata | 251410025</span>
-            </div>
-        </div>
+    <div class="card">
+      <h2>Kesimpulan</h2>
+
+      <ul>
+        <li>Generic membuat kode lebih aman</li>
+        <li>Dapat digunakan ulang</li>
+        <li>Mengurangi runtime error</li>
+        <li>Mendukung berbagai tipe data</li>
+      </ul>
     </div>
 
-    <!-- ============================================= -->
-    <!-- SLIDE: Cache<T> (Generic Cache)               -->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>🗄️ Generic Cache&lt;T&gt; (Contoh Implementasi)</h2>
-        </div>
-        <div class="slide-content">
-            <pre>class Cache&lt;T&gt; {
-  final Map&lt;String, T&gt; _storage = {};
-  void set(String key, T value) { _storage[key] = value; }
-  T? get(String key) { return _storage[key]; }
-  void remove(String key) { _storage.remove(key); }
-}
+  </div>
 
-void main() {
-  var userCache = Cache&lt;String&gt;();
-  userCache.set('name', 'Alice');
-  print(userCache.get('name')); // Alice
-  
-  var productCache = Cache&lt;Product&gt;(); // Product class asumsi
-  productCache.set('p1', Product('Laptop', 1000));
-}</pre>
-            <div class="slide-footer">
-                <span>📂 Generic untuk struktur data penyimpanan</span>
-                <span class="identity">Fajar Rio Dinata | 251410025</span>
-            </div>
-        </div>
-    </div>
+  <footer>
+    © 2026 | Tugas Generic Dasar - Fajar Rio Dinata
+  </footer>
 
-    <!-- ============================================= -->
-    <!-- SLIDE 16: Ringkasan & Latihan + Challenge     -->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>📝 Slide 16: Ringkasan & Latihan</h2>
-        </div>
-        <div class="slide-content">
-            <h4>✨ Ringkasan:</h4>
-            <ol>
-                <li>Generic membuat kode type-safe dan reusable</li>
-                <li>Bisa digunakan di class, fungsi, collections</li>
-                <li>Type inference memudahkan penggunaan</li>
-                <li>Constraints membatasi tipe yang diperbolehkan</li>
-            </ol>
-            <h4>📌 Latihan:</h4>
-            <ol>
-                <li>Buat class <code>Stack&lt;T&gt;</code> dengan method: push(), pop(), peek()</li>
-                <li>Buat fungsi <code>mergeLists&lt;T&gt;(List&lt;T&gt; a, List&lt;T&gt; b) -> List&lt;T&gt;</code></li>
-                <li>Buat class <code>Response&lt;T&gt;</code> dengan field T? data dan String? error</li>
-            </ol>
-            <h4>🚀 Challenge:</h4>
-            <p>Buat sistem repository generic dengan method: save(T item), T getById(int id), List&lt;T&gt; getAll()</p>
-            <pre>// Contoh kerjawaban Repository&lt;T&gt;
-class Repository&lt;T&gt; {
-  final Map&lt;int, T&gt; _store = {};
-  void save(int id, T item) { _store[id] = item; }
-  T? getById(int id) => _store[id];
-  List&lt;T&gt; getAll() => _store.values.toList();
-}</pre>
-            <div class="slide-footer">
-                <span>🏁 Praktikkan generic di project nyata</span>
-                <span class="identity">Fajar Rio Dinata | 251410025</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============================================= -->
-    <!-- BONUS: Swap & Triple (dari soal latihan)      -->
-    <!-- ============================================= -->
-    <div class="slide">
-        <div class="slide-header">
-            <h2>🔄 Bonus: Fungsi swap&lt;T&gt; & Class Triple&lt;A,B,C&gt;</h2>
-        </div>
-        <div class="slide-content">
-            <pre>void swap&lt;T&gt;(List&lt;T&gt; list, int i, int j) {
-  final temp = list[i];
-  list[i] = list[j];
-  list[j] = temp;
-}
-
-class Triple&lt;A, B, C&gt; {
-  A first;
-  B second;
-  C third;
-  Triple(this.first, this.second, this.third);
-  void printTriple() => print('Triple($first, $second, $third)');
-}
-
-void main() {
-  var numbers = [1, 2, 3];
-  swap(numbers, 0, 2);
-  print(numbers); // [3, 2, 1]
-  
-  var triple = Triple&lt;int, String, bool&gt;(42, "Dart", true);
-  triple.printTriple(); // Triple(42, Dart, true)
-}</pre>
-            <div class="slide-footer">
-                <span>✨ Generic menyederhanakan kode tanpa duplikasi</span>
-                <span class="identity">Fajar Rio Dinata | 251410025</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Penutup -->
-    <div style="text-align: center; padding: 1rem; color: #a5b4fc; font-size: 0.75rem;">
-        © 2025 - Generic Dasar Dart | Disusun oleh: Fajar Rio Dinata (NIM: 251410025) | Sesuai modul slide sesi 6
-    </div>
-</div>
 </body>
 </html>
-```
