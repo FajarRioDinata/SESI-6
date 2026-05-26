@@ -296,19 +296,17 @@ void main() {
         <div class="slide-content">
             <p><strong>Type parameter:</strong> <code>&lt;T&gt;</code>, <code>&lt;E&gt;</code>, <code>&lt;K, V&gt;</code></p>
             <p><strong>Konvensi:</strong> T = Type, E = Element, K = Key, V = Value, R = Return type</p>
-            <pre><code>class MyClass&lt;T&gt; {
-  T data;
-  MyClass(this.data);
-  T getData() => data;
+            <pre><code>class Box<T> {
+  T data;              // <- tambah spasi indentasi (biasanya 2 spasi)
+  Box(this.data);
 }
 
-T myFunc&lt;T&gt;(T value) => value;
-
 void main() {
-  var myIntClass = MyClass&lt;int&gt;(10);
-  print(myIntClass.getData()); // Output: 10
-  var intValue = myFunc&lt;int&gt;(100);
-  print(intValue); // 100
+  var intBox = Box<int>(42);        // T = int
+  var stringBox = Box<String>('Hello'); // T = String
+
+  int value = intBox.data;          // Aman, pasti int
+  // stringBox.data = 123;          // ERROR compile-time
 }</code></pre>
         </div>
         <div class="footer-note">Slide 5: Sintaks - Fajar Rio Dinata (251410025)</div>
