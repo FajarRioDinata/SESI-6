@@ -328,37 +328,37 @@ void main() {
         </div>
     </div>
 
-      <!-- Slide 8: Multiple type parameters -->
+    <!-- Slide 8: Multiple type parameters -->
     <div class="slide-card">
         <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 8</span> Multiple type parameters</div></div>
         <div class="slide-content">
-            <pre><!-- Slide 8: Multiple type parameters -->
-    <div class="slide-card">
-        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 5</span> Solusi dengan generic</div></div>
-        <div class="slide-content">
-            <pre>class Box<T> {
-  T data;
-  Box(this.data);
+            <pre>class Pair<K, V> {
+  K key;
+  V value;
+
+  Pair(this.key, this.value);
+
+  void printPair() {
+    print('Key: $key, Value: $value');
+  }
 }
 
 void main() {
-  var intBox = Box<int>(42);     // T = int
-  var stringBox = Box<String>('Hello'); // T = String
+  // Pair dengan tipe data String dan int
+  var pair1 = Pair<String, int>("age", 30);
+  pair1.printPair(); // Output: Key: age, Value: 30
 
-  int value = intBox.data;       // Aman, pasti int
-  print(value);                  // Output: 42
+  // Pair dengan tipe data String dan String
+  var pair2 = Pair<String, String>("name", "Alice");
+  pair2.printPair(); // Output: Key: name, Value: Alice
 
-  // stringBox.data = 123;       // ❌ ERROR compile-time: String tidak bisa diisi int
-  
-  // Contoh yang benar mengubah nilai dengan tipe sama
-  stringBox.data = 'World';      // ✅ Boleh, karena tipe String
-  print(stringBox.data);         // Output: World
+  // Pair dengan tipe data int dan double
+  var pair3 = Pair<int, double>(1, 2.71);
+  pair3.printPair(); // Output: Key: 1, Value: 2.71
 }</pre>
             </p>
         </div>
     </div>
-
-
 
     <!-- Slide 9: menggabungkan dua nilai berbeda (Combine) -->
     <div class="slide-card">
