@@ -246,25 +246,33 @@ void main() {
     
      <!-- Slide 5: Solusi dengan generic  -->
     <div class="slide-card">
-        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 4</span> Solusi dengan generic</div></div>
+        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 5</span> Solusi dengan generic</div></div>
         <div class="slide-content">
-            <pre>class Box {
-  dynamic data; // Bisa apa saja
-  Box(this.data);
+            <pre>class Box<T> {
+  T data;
+  Box(this.data); // ✅ Perbaikan: tambahkan titik koma (;)
 }
 
 void main() {
-  var box = Box(42);
-  int value = box.data; // Runtime error jika bukan int
-  // Tidak aman!
+  var intBox = Box<int>(42);     // T = int
+  var stringBox = Box<String>('Hello'); // T = String
+
+  int value = intBox.data;       // Aman, pasti int
+  print(value);                  // Output: 42
+
+  // stringBox.data = 123;       // ❌ ERROR compile-time: String tidak bisa diisi int
+  
+  // Contoh yang benar mengubah nilai dengan tipe sama
+  stringBox.data = 'World';      // ✅ Boleh, karena tipe String
+  print(stringBox.data);         // Output: World
 }</pre>
-            <p>⚠️ Tanpa generic, terjadi risiko <strong>runtime error</strong> karena tipe tidak terkontrol.</p>
+            </p>
         </div>
     </div>
 
-    <!-- Slide 5: Sintaks Generic Dasar & Konvensi -->
+    <!-- Slide 6: Contoh Sintaks Generic pada class dan function -->
     <div class="slide-card">
-        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 5</span> Sintaks Generic Dasar</div></div>
+        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 6</span> contoh Sintaks Generic pada class dan function</div></div>
         <div class="slide-content">
             <p><strong>Type parameter:</strong> <code>&lt;T&gt;</code>, <code>&lt;E&gt;</code>, <code>&lt;K, V&gt;</code></p>
             <ul>
@@ -292,9 +300,9 @@ void main() {
         </div>
     </div>
 
-    <!-- Slide 6: contoh Kelas Box<T> (lengkap) -->
+    <!-- Slide 7: contoh Kelas Box<T> (lengkap) -->
     <div class="slide-card">
-        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 6</span> Kelas Box&lt;T&gt; - Contoh Praktis</div></div>
+        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 7</span> Kelas Box&lt;T&gt; - Contoh Praktis</div></div>
         <div class="slide-content">
             <pre>class Box&lt;T&gt; {
   T? _value;
