@@ -205,7 +205,10 @@
                 <li><code>final</code> : tidak bisa di-extend/di-implement dari luar</li>
             </ul>
             <p><strong>Contoh cepat:</strong></p>
-            <pre>sealed class Result {}
+            <pre>//nama:fajar rio dinata
+//nim:251410025
+//kelas:S12A
+sealed class Result {}
 class Success extends Result {}
 class Failure extends Result {}</pre>
         </div>
@@ -230,7 +233,10 @@ class Failure extends Result {}</pre>
     <div class="slide-card">
         <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 4</span> Masalah Tanpa Generic</div></div>
         <div class="slide-content">
-            <pre>class Box {
+            <pre>//nama:fajar rio dinata
+//nim:251410025
+//kelas:S12A
+class Box {
   dynamic data; // Bisa apa saja
   Box(this.data);
 }
@@ -248,7 +254,10 @@ void main() {
     <div class="slide-card">
         <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 5</span> Solusi dengan generic</div></div>
         <div class="slide-content">
-            <pre>class Box<T> {
+            <pre>//nama:fajar rio dinata
+//nim:251410025
+//kelas:S12A
+class Box<T> {
   T data;
   Box(this.data);
 }
@@ -280,7 +289,10 @@ void main() {
                 <li><code>E</code> = Element (collection)</li>
                 <li><code>K</code> = Key, <code>V</code> = Value, <code>R</code> = Return type</li>
             </ul>
-            <pre>class MyClass&lt;T&gt; {
+            <pre>//nama:fajar rio dinata
+//nim:251410025
+//kelas:S12A
+class MyClass&lt;T&gt; {
   T data;
   MyClass(this.data);
   T getData() => data;
@@ -332,7 +344,10 @@ void main() {
     <div class="slide-card">
         <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 8</span> Multiple type parameters</div></div>
         <div class="slide-content">
-            <pre>class Pair<K, V> {
+            <pre>//nama:fajar rio dinata
+//nim:251410025
+//kelas:S12A
+class Pair<K, V> {
   K key;
   V value;
 
@@ -364,7 +379,10 @@ void main() {
     <div class="slide-card">
         <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 9</span>  menggabungkan dua nilai dengan tipe data yang berbeda</div></div>
         <div class="slide-content">
-            <pre>String combine&lt;T, U&gt;(T value1, U value2) {
+            <pre>//nama:fajar rio dinata
+//nim:251410025
+//kelas:S12A
+String combine&lt;T, U&gt;(T value1, U value2) {
   return '$value1, $value2';
 }
 
@@ -381,7 +399,7 @@ void main() {
 
     <!-- Slide 10: Generic dengan extends (batasan) -->
     <div class="slide-card">
-        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 8</span> Generic dengan extends (Constraint)</div></div>
+        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 10</span> Generic dengan extends (Constraint)</div></div>
         <div class="slide-content">
             <pre>class NumberBox&lt;T extends num&gt; {
   T value;
@@ -435,7 +453,10 @@ void main() {
     <div class="slide-card">
         <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 13</span> Constraint pada Iterable</div></div>
         <div class="slide-content">
-            <pre>void printIterable&lt;T extends Iterable&lt;dynamic&gt;&gt;(T iterable) {
+            <pre>//nama:fajar rio dinata
+//nim:251410025
+//kelas:S12A
+void printIterable&lt;T extends Iterable&lt;dynamic&gt;&gt;(T iterable) {
   for (var item in iterable) {
     print(item);
   }
@@ -495,7 +516,7 @@ void main() {
 
     <!-- Slide 16: Generic vs Dynamic vs Object (tabel) -->
     <div class="slide-card">
-        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 14</span> Generic vs Dynamic vs Object</div></div>
+        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 16</span> Generic vs Dynamic vs Object</div></div>
         <div class="slide-content">
             <table>
                 <thead>
@@ -518,7 +539,10 @@ Object box3 = 42;              // Object: perlu casting</pre>
     <div class="slide-card">
         <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 17</span> Contoh: Cache Generic</div></div>
         <div class="slide-content">
-            <pre>class Cache&lt;T&gt; {
+            <pre>//nama:fajar rio dinata
+//nim:251410025
+//kelas:S12A
+class Cache&lt;T&gt; {
   final Map&lt;String, T&gt; _storage = {};
   void set(String key, T value) { _storage[key] = value; }
   T? get(String key) => _storage[key];
