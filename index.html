@@ -250,7 +250,7 @@ void main() {
         <div class="slide-content">
             <pre>class Box<T> {
   T data;
-  Box(this.data); // ✅ Perbaikan: tambahkan titik koma (;)
+  Box(this.data);
 }
 
 void main() {
@@ -328,9 +328,41 @@ void main() {
         </div>
     </div>
 
-    <!-- Slide 7: menggabungkan dua nilai berbeda (Combine) -->
+      <!-- Slide 8: Multiple type parameters -->
     <div class="slide-card">
-        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 7</span> Generic Multi Tipe Parameter</div></div>
+        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 8</span> Multiple type parameters</div></div>
+        <div class="slide-content">
+            <pre><!-- Slide 8: Multiple type parameters -->
+    <div class="slide-card">
+        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 5</span> Solusi dengan generic</div></div>
+        <div class="slide-content">
+            <pre>class Box<T> {
+  T data;
+  Box(this.data);
+}
+
+void main() {
+  var intBox = Box<int>(42);     // T = int
+  var stringBox = Box<String>('Hello'); // T = String
+
+  int value = intBox.data;       // Aman, pasti int
+  print(value);                  // Output: 42
+
+  // stringBox.data = 123;       // ❌ ERROR compile-time: String tidak bisa diisi int
+  
+  // Contoh yang benar mengubah nilai dengan tipe sama
+  stringBox.data = 'World';      // ✅ Boleh, karena tipe String
+  print(stringBox.data);         // Output: World
+}</pre>
+            </p>
+        </div>
+    </div>
+
+
+
+    <!-- Slide 9: menggabungkan dua nilai berbeda (Combine) -->
+    <div class="slide-card">
+        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 9</span>  menggabungkan dua nilai dengan tipe data yang berbeda</div></div>
         <div class="slide-content">
             <pre>String combine&lt;T, U&gt;(T value1, U value2) {
   return '$value1, $value2';
