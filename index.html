@@ -1,6 +1,4 @@
-Berikut adalah kode HTML yang menampilkan materi dari slide "SESI 6: Generic Dasar" secara berurutan dan rapi, serta mencantumkan nama dan NIM seperti yang diminta.
 
-```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -231,6 +229,24 @@ class Failure extends Result {}</pre>
     <!-- Slide 4: Masalah Tanpa Generic -->
     <div class="slide-card">
         <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 4</span> Masalah Tanpa Generic</div></div>
+        <div class="slide-content">
+            <pre>class Box {
+  dynamic data; // Bisa apa saja
+  Box(this.data);
+}
+
+void main() {
+  var box = Box(42);
+  int value = box.data; // Runtime error jika bukan int
+  // Tidak aman!
+}</pre>
+            <p>⚠️ Tanpa generic, terjadi risiko <strong>runtime error</strong> karena tipe tidak terkontrol.</p>
+        </div>
+    </div>
+    
+     <!-- Slide 5: Solusi dengan generic  -->
+    <div class="slide-card">
+        <div class="slide-header"><div class="slide-title"><span class="slide-number">Slide 4</span> Solusi dengan generic</div></div>
         <div class="slide-content">
             <pre>class Box {
   dynamic data; // Bisa apa saja
